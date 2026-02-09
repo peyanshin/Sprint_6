@@ -25,7 +25,6 @@ class OrderLocators:
     RENT_ORDER_NUMBER = (By.XPATH, "//div[@class='Order_Text__2broi']")
     RENT_ORDER_INFO_BUTTON = (By.XPATH, "//div[@class='Order_NextButton__1_rCA']//button[text()='Посмотреть статус']")
 
-    #CHECK_NUMBER = 
     CHECK_NAME = (By.XPATH, "//div[contains(@class, 'Track_Row__1sN1F')][.//div[contains(@class, 'Track_Title__1XfhB') and text()='Имя']]//div[contains(@class, 'Track_Value__15eEX')]")
     CHECK_LAST_NAME = (By.XPATH, "//div[contains(@class, 'Track_Row__1sN1F')][.//div[contains(@class, 'Track_Title__1XfhB') and text()='Фамилия']]//div[contains(@class, 'Track_Value__15eEX')]")
     CHECK_ADDRESS = (By.XPATH, "//div[contains(@class, 'Track_Row__1sN1F')][.//div[contains(@class, 'Track_Title__1XfhB') and text()='Адрес']]//div[contains(@class, 'Track_Value__15eEX')]")
