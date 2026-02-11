@@ -6,15 +6,14 @@ class OrderLocators:
     FOR_WHOM_NAME = (By.XPATH, "//input[@placeholder='* Имя']")
     FOR_WHOM_LAST_NAME = (By.XPATH, "//input[@placeholder='* Фамилия']")
     FOR_WHOM_ADDRESS = (By.XPATH, "//input[@placeholder='* Адрес: куда привезти заказ']")
-    FOR_WHOM_METRO = (By.XPATH, "//div[@class='select-search']//input[@placeholder='* Станция метро']") #Выбор станции метро
+    FOR_WHOM_METRO = (By.XPATH, "//div[@class='select-search']//input[@placeholder='* Станция метро']")  # Выбор станции метро
     METRO_OPTION_TEMPLATE = ".//*[contains(@class, 'select-search__options')]//div[normalize-space()='{}']"
     FOR_WHOM_PHONE = (By.XPATH, "//input[@placeholder='* Телефон: на него позвонит курьер']")
-    FOR_WHOM_NEXT_BUTTON = (By.XPATH, "//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Далее']  ")
+    FOR_WHOM_NEXT_BUTTON = (By.XPATH, "//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Далее']")
 
     RENT_DATE = (By.XPATH, "//input[@type='text' and @placeholder='* Когда привезти самокат']")
-    RENT_PERIOD = (By.XPATH, "//div[@class='Dropdown-placeholder' and text()='* Срок аренды']")
-    RENT_OPTION_TEMPLATE = ".//*[contains(@class, 'Dropdown-control') or contains(@class, 'Dropdown-menu')]//\
-*[contains(@class, 'Dropdown-placeholder') or contains(@class, 'Dropdown-option') or contains(@class, 'option')][normalize-space()='{}']"
+    RENT_PERIOD_DROPDOWN = (By.XPATH, "//div[contains(@class, 'Dropdown-control') or contains(@class, 'Dropdown-menu')]")
+
     RENT_BLACK_PERL = (By.XPATH, "//label[@for='black' and text()='чёрный жемчуг']")
     RENT_GREY_HOPELESSNESS = (By.XPATH, "//label[@for='grey' and text()='серая безысходность']")
     RENT_COMMENT = (By.XPATH, "//input[@type='text' and @placeholder='Комментарий для курьера']")
@@ -34,14 +33,19 @@ class OrderLocators:
     CHECK_PERIOD = (By.XPATH, "//div[contains(@class, 'Track_Row__1sN1F')][.//div[contains(@class, 'Track_Title__1XfhB') and text()='Срок аренды']]//div[contains(@class, 'Track_Value__15eEX')]")
     CHECK_COLOR = (By.XPATH, "//div[contains(@class, 'Track_Row__1sN1F')][.//div[contains(@class, 'Track_Title__1XfhB') and text()='Цвет']]//div[contains(@class, 'Track_Value__15eEX')]")
     CHECK_COMMENT = (By.XPATH, "//div[contains(@class, 'Track_Row__1sN1F')][.//div[contains(@class, 'Track_Title__1XfhB') and text()='Комментарий']]//div[contains(@class, 'Track_Value__15eEX')]")
-    
+
     @staticmethod
-    def get_metro_option_locator(station_name: str) -> tuple:
-        xpath = OrderLocators.METRO_OPTION_TEMPLATE.format(station_name)
-        return (By.XPATH, xpath)
-    
+    def get_metro_option_locator(station_name):
+        return (By.XPATH, f"//div[text()='{station_name}']")
+
     @staticmethod
-    def get_period_option_locator(period: str) -> tuple:
-        xpath = OrderLocators.RENT_OPTION_TEMPLATE.format(period)
-        return (By.XPATH, xpath)
-    
+    def get_period_option_locator(period):
+        return (By.XPATH, f".//div[contains(@class, 'Dropdown-option') or contains(@class, 'option')][normalize-space()='{period}']")
+
+    @staticmethod
+    def get_calendar_day_locator(day_number):
+        return (By.XPATH, f"//div[contains(@class, 'react-datepicker__day') and text()='{day_number}']")
+
+    @staticmethod
+    def get_datepicker_locator():
+        return (By.CLASS_NAME, "react-datepicker")
