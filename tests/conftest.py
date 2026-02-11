@@ -1,7 +1,6 @@
 import pytest
 
 from curl import *
-from data import *
 
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
@@ -21,11 +20,3 @@ def driver():
 
     yield browser
     browser.quit()
-
-@pytest.fixture
-def test_first_data_sets():
-    return OrderData.FIRST_SET
-
-@pytest.fixture
-def test_second_data_sets():
-    return OrderData.SECOND_SET
