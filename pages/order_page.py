@@ -1,16 +1,11 @@
 import allure
-
 from datetime import datetime
 
 from pages.base_page import BasePage
-
 from locators.order_locators import OrderLocators
-
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
-TIMEOUT = 3000
+TIMEOUT = 2
 
 class OrderPage(BasePage):
     @allure.step("Заполнение данных заказчика")
@@ -20,7 +15,7 @@ class OrderPage(BasePage):
         self.enter_address(data["address"])
         self.select_metro(data["metro"])
         self.enter_phone(data["phone"])
-    
+
     @allure.step("Ввести имя")
     def enter_name(self, name):
         self.send_keys_to_input(OrderLocators.FOR_WHOM_NAME, name)
@@ -32,7 +27,7 @@ class OrderPage(BasePage):
     @allure.step("Ввести адрес")
     def enter_address(self, address):
         self.send_keys_to_input(OrderLocators.FOR_WHOM_ADDRESS, address)
-
+    
     @allure.step("Ввести номер телефона")
     def enter_phone(self, phone):
         self.send_keys_to_input(OrderLocators.FOR_WHOM_PHONE, phone)
@@ -44,7 +39,9 @@ class OrderPage(BasePage):
         metro_input.clear()
         metro_input.send_keys(station_name)
 
-        metro_option = self.wait_for_element(OrderLocators.get_metro_option_locator(station_name))
+        metro_option = self.wait_for_element(
+            OrderLocators.get_metro_option_locator(station_name)
+        )
         metro_option.click()
 
     @allure.step("Нажать кнопку «Далее»")
@@ -55,7 +52,8 @@ class OrderPage(BasePage):
     def select_delivery_date(self, date_str):
         date_input = self.wait_for_element(OrderLocators.RENT_DATE)
         date_input.click()
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(OrderLocators.get_datepicker_locator()))
+        
+        self.wait_for_element(OrderLocators.get_datepicker_locator())
 
         target_date = datetime.strptime(date_str, "%Y-%m-%d")
         day_number = target_date.day
@@ -72,9 +70,14 @@ class OrderPage(BasePage):
     @allure.step("Выбрать срок аренды")
     def select_rent_period(self, period):
         dropdown = self.wait_for_element(OrderLocators.RENT_PERIOD_DROPDOWN)
-        dropdown.click()    
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(OrderLocators.get_period_option_locator(period)))
-        period_element = self.wait_for_element(OrderLocators.get_period_option_locator(period))
+        dropdown.click()
+
+        self.wait_for_element(
+            OrderLocators.get_period_option_locator(period)
+        )
+        period_element = self.wait_for_element(
+            OrderLocators.get_period_option_locator(period)
+        )
         period_element.click()
 
     @allure.step("Выбрать цвет самоката «Чёрная жемчужина»")
@@ -96,8 +99,8 @@ class OrderPage(BasePage):
     @allure.step("Подтвердить заказ нажатием кнопки «Да»")
     def confirm_order(self):
         self.click_on_element(OrderLocators.RENT_YES_BUTTON)
-        WebDriverWait(self.driver, timeout=2).until(EC.element_to_be_clickable(OrderLocators.RENT_ORDER_INFO_BUTTON))
-        
+        self.wait_for_order_number(OrderLocators.RENT_ORDER_NUMBER)
+
     @allure.step("Нажать кнопку «Посмотреть заказ»")
     def click_order_info_button(self):
         self.click_on_element(OrderLocators.RENT_ORDER_INFO_BUTTON)
@@ -171,5 +174,6 @@ class OrderPage(BasePage):
         element = self.wait_for_element(OrderLocators.CHECK_COMMENT)
         expected_comment = data.get("comment", "")
         assert element.text == expected_comment, (
-            f"Комментарий не совпадает: ожидалось '{expected_comment}', найдено '{element.text}'"
+            f"Комментарий не совпадает: ожидалось '{expected_comment}', найденонайдено '{element.text}'"
         )
+            
