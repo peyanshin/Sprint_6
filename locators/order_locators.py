@@ -6,7 +6,7 @@ class OrderLocators:
     FOR_WHOM_NAME = (By.XPATH, "//input[@placeholder='* Имя']")
     FOR_WHOM_LAST_NAME = (By.XPATH, "//input[@placeholder='* Фамилия']")
     FOR_WHOM_ADDRESS = (By.XPATH, "//input[@placeholder='* Адрес: куда привезти заказ']")
-    FOR_WHOM_METRO = (By.XPATH, "//div[@class='select-search']//input[@placeholder='* Станция метро']")  # Выбор станции метро
+    FOR_WHOM_METRO = (By.XPATH, "//div[@class='select-search']//input[@placeholder='* Станция метро']")
     METRO_OPTION_TEMPLATE = ".//*[contains(@class, 'select-search__options')]//div[normalize-space()='{}']"
     FOR_WHOM_PHONE = (By.XPATH, "//input[@placeholder='* Телефон: на него позвонит курьер']")
     FOR_WHOM_NEXT_BUTTON = (By.XPATH, "//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Далее']")
@@ -21,7 +21,7 @@ class OrderLocators:
     RENT_ORDER = (By.XPATH, "//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Заказать']")
     RENT_NO_BUTTON = (By.XPATH, "//div[@class='Order_Modal__YZ-d3']//button[text()='Нет']")
     RENT_YES_BUTTON = (By.XPATH, "//div[@class='Order_Modal__YZ-d3']//button[text()='Да']")
-    RENT_ORDER_NUMBER = (By.XPATH, "//div[@class='Order_Text__2broi']")
+    RENT_ORDER_NUMBER = (By.XPATH, "//div[contains(@class, 'ModalHeader')]//div[contains(text(), 'Номер заказа:')]")
     RENT_ORDER_INFO_BUTTON = (By.XPATH, "//div[@class='Order_NextButton__1_rCA']//button[text()='Посмотреть статус']")
 
     CHECK_NAME = (By.XPATH, "//div[contains(@class, 'Track_Row__1sN1F')][.//div[contains(@class, 'Track_Title__1XfhB') and text()='Имя']]//div[contains(@class, 'Track_Value__15eEX')]")
