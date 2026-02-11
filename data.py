@@ -1,3 +1,24 @@
-class Credentials:
-    email='qwerqewr@asdfsdf.ru'
-    password='123456'
+class OrderData:
+    FIRST_SET = {
+        "name": "Иван",
+        "lastname": "Иванов",
+        "address": "Тверская улица, 15",
+        "metro": "Тверская",
+        "phone": "89251241246",
+        "date": "2026-02-12",
+        "period": "двое суток",
+        "color": "чёрный жемчуг",
+        "comment": "Позвонить за 15 минут"
+    }
+
+    SECOND_SET = {
+        "name": "Анна",
+        "lastname": "Петрова",
+        "address": "Ленинский проспект, 90",
+        "metro": "Ленинский проспект",
+        "phone": "89164536825",
+        "date": "2026-02-15",
+        "period": "семеро суток",
+        "color": "серая безысходность",
+        "comment": "Позвонить за час"
+    }
