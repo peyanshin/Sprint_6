@@ -1,5 +1,4 @@
 import allure
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -46,7 +45,7 @@ class BasePage:
         return WebDriverWait(self.driver, timeout).until(
             EC.text_to_be_present_in_element_attribute(locator, attribute, value)
         )
-    
+
     @allure.step("Элемент отсутствует на странице")
     def is_element_not_present(self, locator, timeout=TIMEOUT):
         try:
